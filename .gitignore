@@ -1,0 +1,13 @@
+.DS_Store
+*.log
+node_modules/
+.env
+# internal docs — not for public repo
+HANDOFF.md
+UX_REVIEW.md
+COPY_REVIEW.md
+CAMPAIGN_PLAN.md
+LEGAL_REVIEW.md
+A11Y_REVIEW.md
+adgar360.html
+assets/hero-concept-full.png
