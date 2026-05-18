@@ -1543,6 +1543,8 @@
 
 <script>
   // ===== Cookie consent (IL Amendment 13 — granular, opt-in) =====
+  // Set to true when Pixel/GA4 IDs are wired into the consent-changed handler below.
+  const TRACKING_ENABLED = false;
   const CONSENT_KEY = 'greems-consent-v1';
   window.greemsConsent = {
     state: { essential: true, analytics: false, marketing: false, timestamp: null },
@@ -1603,12 +1605,13 @@
       window._pixelsLoaded = true;
     }
   });
-  // Init on load
-  if (!loadConsent()) {
-    setTimeout(showBanner, 400);
-  } else {
-    // Re-fire consent-changed so pixels load on return visits
-    document.dispatchEvent(new CustomEvent('greems:consent-changed', { detail: window.greemsConsent.state }));
+  // Init on load — only show banner when tracking is actually wired up
+  if (TRACKING_ENABLED) {
+    if (!loadConsent()) {
+      setTimeout(showBanner, 400);
+    } else {
+      document.dispatchEvent(new CustomEvent('greems:consent-changed', { detail: window.greemsConsent.state }));
+    }
   }
   // ESC to close modal
   document.addEventListener('keydown', function(e) {
