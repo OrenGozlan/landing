@@ -860,6 +860,170 @@
   html[lang="en"] [data-lang="en"] { display: revert; }
   html[lang="he"] .show-inline-he { display: inline-flex; }
   html[lang="en"] .show-inline-en { display: inline-flex; }
+
+  /* cookie consent — IL Amendment 13 compliant */
+  .cookie-banner {
+    position: fixed;
+    bottom: 16px; left: 16px; right: 16px;
+    max-width: 720px;
+    margin: 0 auto;
+    z-index: 9999;
+    padding: 22px 24px;
+    border-radius: 18px;
+    background: rgba(11, 24, 20, 0.96);
+    border: 1px solid rgba(76, 255, 181, 0.35);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6), var(--glow-soft);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: var(--text);
+    display: none;
+  }
+  .cookie-banner.show { display: block; }
+  .cookie-banner h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .cookie-banner p {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .cookie-banner p a { color: var(--neon); text-decoration: underline; }
+  .cookie-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .cookie-actions button {
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .cookie-actions .cookie-accept {
+    background: linear-gradient(135deg, var(--green), var(--neon));
+    color: var(--bg);
+    border-color: transparent;
+  }
+  .cookie-actions .cookie-accept:hover { transform: translateY(-1px); box-shadow: var(--glow-soft); }
+  .cookie-actions .cookie-reject,
+  .cookie-actions .cookie-manage {
+    background: rgba(159, 225, 203, 0.06);
+    color: var(--text);
+  }
+  .cookie-actions .cookie-reject:hover,
+  .cookie-actions .cookie-manage:hover {
+    background: rgba(159, 225, 203, 0.12);
+    border-color: var(--green-light);
+  }
+
+  /* cookie modal */
+  .cookie-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 16, 13, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .cookie-modal-overlay.show { display: flex; }
+  .cookie-modal {
+    max-width: 560px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 32px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(15, 33, 28, 0.95), rgba(11, 24, 20, 0.95));
+    border: 1px solid rgba(76, 255, 181, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  }
+  .cookie-modal h2 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .cookie-modal > p {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .cookie-category {
+    padding: 16px;
+    border-radius: 12px;
+    background: rgba(7, 16, 13, 0.5);
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+  .cookie-category-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .cookie-category-head h4 {
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .cookie-category p {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  .cookie-toggle {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    background: rgba(159, 225, 203, 0.15);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .cookie-toggle::after {
+    content: "";
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--text-dim);
+    transition: all 0.2s;
+  }
+  .cookie-toggle[aria-checked="true"] {
+    background: var(--green);
+    border-color: var(--neon);
+  }
+  .cookie-toggle[aria-checked="true"]::after {
+    background: var(--bg);
+    transform: translateX(20px);
+  }
+  html[dir="rtl"] .cookie-toggle[aria-checked="true"]::after {
+    transform: translateX(-20px);
+  }
+  .cookie-toggle[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  .cookie-modal-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
 </style>
 </head>
 <body>
@@ -1249,6 +1413,8 @@
       <a href="https://www.greems.io/privacy" target="_blank" rel="noopener" data-lang="en">Privacy</a>
       <a href="https://www.greems.io/privacy" target="_blank" rel="noopener" data-lang="he">הצהרת נגישות</a>
       <a href="https://www.greems.io/privacy" target="_blank" rel="noopener" data-lang="en">Accessibility</a>
+      <a href="#" onclick="event.preventDefault();openConsent();" data-lang="he">העדפות עוגיות</a>
+      <a href="#" onclick="event.preventDefault();openConsent();" data-lang="en">Cookie preferences</a>
     </div>
     <div data-lang="he">© Greems · מפעיל IL*GRE · מתחם אדגר 360, השלושה 2 ת״א</div>
     <div data-lang="en">© Greems · Operator ID IL*GRE · Adgar 360, HaShlosha 2, Tel Aviv</div>
@@ -1285,6 +1451,171 @@
     const saved = localStorage.getItem('greems-lang');
     if (saved === 'en' || saved === 'he') setLang(saved);
   } catch (e) {}
+</script>
+
+<!-- COOKIE CONSENT BANNER (IL Amendment 13 / GDPR-style) -->
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-desc">
+  <h3 id="cookie-title">
+    <span data-lang="he">🍪 שימוש בעוגיות</span>
+    <span data-lang="en">🍪 We use cookies</span>
+  </h3>
+  <p id="cookie-desc">
+    <span data-lang="he">אנחנו משתמשים בעוגיות חיוניות להפעלת האתר ובעוגיות אנליטיקה ושיווק כדי לשפר את החוויה ולמדוד קמפיינים. תוכלו לקבל הכל, לדחות הכל, או לבחור לפי קטגוריה. <a href="https://www.greems.io/privacy" target="_blank" rel="noopener">מדיניות פרטיות</a>.</span>
+    <span data-lang="en">We use essential cookies to run the site, plus analytics and marketing cookies to improve experience and measure campaigns. Accept all, reject all, or choose by category. <a href="https://www.greems.io/privacy" target="_blank" rel="noopener">Privacy policy</a>.</span>
+  </p>
+  <div class="cookie-actions">
+    <button type="button" class="cookie-accept" onclick="consentSet('all')">
+      <span data-lang="he">קבל הכל</span>
+      <span data-lang="en">Accept all</span>
+    </button>
+    <button type="button" class="cookie-reject" onclick="consentSet('reject')">
+      <span data-lang="he">דחה הכל</span>
+      <span data-lang="en">Reject all</span>
+    </button>
+    <button type="button" class="cookie-manage" onclick="openConsentModal()">
+      <span data-lang="he">בחר עוגיות</span>
+      <span data-lang="en">Manage</span>
+    </button>
+  </div>
+</div>
+
+<!-- COOKIE PREFERENCES MODAL -->
+<div class="cookie-modal-overlay" id="cookie-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
+  <div class="cookie-modal">
+    <h2 id="cookie-modal-title">
+      <span data-lang="he">העדפות עוגיות</span>
+      <span data-lang="en">Cookie preferences</span>
+    </h2>
+    <p>
+      <span data-lang="he">בחרו אילו עוגיות לאפשר. ההעדפות נשמרות במכשיר שלכם וניתן לעדכן בכל עת.</span>
+      <span data-lang="en">Choose which cookies to allow. Preferences are stored on your device and can be updated at any time.</span>
+    </p>
+
+    <div class="cookie-category">
+      <div class="cookie-category-head">
+        <h4><span data-lang="he">חיוניות</span><span data-lang="en">Essential</span></h4>
+        <div class="cookie-toggle" aria-checked="true" aria-disabled="true" role="switch" tabindex="-1"></div>
+      </div>
+      <p>
+        <span data-lang="he">נדרשות לתפקוד האתר (בחירת שפה, הצגת בחירת עוגיות). תמיד פעילות.</span>
+        <span data-lang="en">Required for the site to function (language preference, cookie choice). Always on.</span>
+      </p>
+    </div>
+
+    <div class="cookie-category">
+      <div class="cookie-category-head">
+        <h4><span data-lang="he">אנליטיקה</span><span data-lang="en">Analytics</span></h4>
+        <div class="cookie-toggle" id="tog-analytics" aria-checked="false" role="switch" tabindex="0" onclick="toggleConsent('analytics', this)" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();toggleConsent('analytics', this);}"></div>
+      </div>
+      <p>
+        <span data-lang="he">מאפשרת לנו להבין איך משתמשים באתר (GA4, ביקורי דפים). אנונימית.</span>
+        <span data-lang="en">Helps us understand how the site is used (GA4, page views). Anonymous.</span>
+      </p>
+    </div>
+
+    <div class="cookie-category">
+      <div class="cookie-category-head">
+        <h4><span data-lang="he">שיווק</span><span data-lang="en">Marketing</span></h4>
+        <div class="cookie-toggle" id="tog-marketing" aria-checked="false" role="switch" tabindex="0" onclick="toggleConsent('marketing', this)" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();toggleConsent('marketing', this);}"></div>
+      </div>
+      <p>
+        <span data-lang="he">מאפשרת מעקב פיקסלים של Meta ו-TikTok למדידת קמפיינים ורימרקטינג.</span>
+        <span data-lang="en">Allows Meta and TikTok pixels for campaign measurement and retargeting.</span>
+      </p>
+    </div>
+
+    <div class="cookie-modal-actions">
+      <button type="button" class="cookie-accept" onclick="consentSet('custom')">
+        <span data-lang="he">שמור בחירה</span>
+        <span data-lang="en">Save choice</span>
+      </button>
+      <button type="button" class="cookie-reject" onclick="consentSet('all'); closeConsentModal();">
+        <span data-lang="he">קבל הכל</span>
+        <span data-lang="en">Accept all</span>
+      </button>
+      <button type="button" class="cookie-manage" onclick="closeConsentModal()">
+        <span data-lang="he">בטל</span>
+        <span data-lang="en">Cancel</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ===== Cookie consent (IL Amendment 13 — granular, opt-in) =====
+  const CONSENT_KEY = 'greems-consent-v1';
+  window.greemsConsent = {
+    state: { essential: true, analytics: false, marketing: false, timestamp: null },
+    has(cat) { return !!this.state[cat]; }
+  };
+  function loadConsent() {
+    try {
+      const raw = localStorage.getItem(CONSENT_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        Object.assign(window.greemsConsent.state, parsed);
+        return true;
+      }
+    } catch (e) {}
+    return false;
+  }
+  function saveConsent() {
+    window.greemsConsent.state.timestamp = new Date().toISOString();
+    try { localStorage.setItem(CONSENT_KEY, JSON.stringify(window.greemsConsent.state)); } catch (e) {}
+    document.dispatchEvent(new CustomEvent('greems:consent-changed', { detail: window.greemsConsent.state }));
+  }
+  function showBanner() { document.getElementById('cookie-banner').classList.add('show'); }
+  function hideBanner() { document.getElementById('cookie-banner').classList.remove('show'); }
+  function openConsentModal() { document.getElementById('cookie-modal-overlay').classList.add('show'); }
+  function closeConsentModal() { document.getElementById('cookie-modal-overlay').classList.remove('show'); }
+  function openConsent() {
+    // Re-sync toggles to current state then open modal
+    document.getElementById('tog-analytics').setAttribute('aria-checked', window.greemsConsent.has('analytics'));
+    document.getElementById('tog-marketing').setAttribute('aria-checked', window.greemsConsent.has('marketing'));
+    openConsentModal();
+  }
+  function toggleConsent(cat, el) {
+    const next = el.getAttribute('aria-checked') !== 'true';
+    el.setAttribute('aria-checked', next ? 'true' : 'false');
+    window.greemsConsent.state[cat] = next;
+  }
+  function consentSet(mode) {
+    if (mode === 'all') {
+      window.greemsConsent.state.analytics = true;
+      window.greemsConsent.state.marketing = true;
+    } else if (mode === 'reject') {
+      window.greemsConsent.state.analytics = false;
+      window.greemsConsent.state.marketing = false;
+    }
+    // mode === 'custom' uses current toggle states
+    saveConsent();
+    hideBanner();
+    closeConsentModal();
+  }
+  // Listen for consent changes — load pixels when granted
+  document.addEventListener('greems:consent-changed', function(e) {
+    if (e.detail.analytics && !window._ga4Loaded) {
+      // TODO: load GA4 here when measurement ID provided
+      window._ga4Loaded = true;
+    }
+    if (e.detail.marketing && !window._pixelsLoaded) {
+      // TODO: load Meta Pixel + TikTok Pixel here when IDs provided
+      window._pixelsLoaded = true;
+    }
+  });
+  // Init on load
+  if (!loadConsent()) {
+    setTimeout(showBanner, 400);
+  } else {
+    // Re-fire consent-changed so pixels load on return visits
+    document.dispatchEvent(new CustomEvent('greems:consent-changed', { detail: window.greemsConsent.state }));
+  }
+  // ESC to close modal
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('cookie-modal-overlay').classList.contains('show')) {
+      closeConsentModal();
+    }
+  });
 </script>
 
 </body>
