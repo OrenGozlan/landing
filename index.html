@@ -1024,6 +1024,38 @@
     margin-top: 24px;
     flex-wrap: wrap;
   }
+
+  /* floating navigate CTA */
+  .float-nav {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 90;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--neon) 0%, var(--green) 100%);
+    color: var(--bg);
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35), 0 0 24px rgba(76,255,181,0.45);
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .float-nav:hover, .float-nav:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.45), 0 0 32px rgba(76,255,181,0.6);
+  }
+  .float-nav svg { display: block; }
+  html[dir="rtl"] .float-nav { right: auto; left: 24px; }
+  @media (max-width: 520px) {
+    .float-nav { padding: 12px 14px; font-size: 14px; bottom: 16px; right: 16px; }
+    html[dir="rtl"] .float-nav { left: 16px; }
+  }
 </style>
 </head>
 <body>
@@ -1395,6 +1427,12 @@
 </section>
 
 </main>
+
+<a class="float-nav" href="https://maps.app.goo.gl/mLZ2w2xxLSNSkmKh8?g_st=ic" target="_blank" rel="noopener" aria-label="Navigate to Greems charging hub">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+  <span data-lang="he">נווטו</span>
+  <span data-lang="en">Navigate</span>
+</a>
 
 <footer>
   <div class="container footer-inner">
