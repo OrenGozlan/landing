@@ -721,6 +721,50 @@
   .app-section {
     text-align: center;
   }
+  .app-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .app-layout .section-head { text-align: left; margin: 0; }
+  html[dir="rtl"] .app-layout .section-head { text-align: right; }
+  .app-layout .app-buttons { justify-content: flex-start; margin-top: 28px; }
+  html[dir="rtl"] .app-layout .app-buttons { justify-content: flex-end; }
+  .app-layout .partners { justify-content: flex-start; margin-top: 28px; }
+  html[dir="rtl"] .app-layout .partners { justify-content: flex-end; }
+  .app-phone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .app-phone img {
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5)) drop-shadow(0 0 40px rgba(76, 220, 168, 0.15));
+    animation: phoneFloat 6s ease-in-out infinite;
+  }
+  @keyframes phoneFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  @media (max-width: 820px) {
+    .app-layout { grid-template-columns: 1fr; gap: 32px; }
+    .app-layout .section-head { text-align: center; }
+    html[dir="rtl"] .app-layout .section-head { text-align: center; }
+    .app-layout .app-buttons,
+    .app-layout .partners { justify-content: center; }
+    html[dir="rtl"] .app-layout .app-buttons,
+    html[dir="rtl"] .app-layout .partners { justify-content: center; }
+    .app-phone { order: -1; }
+    .app-phone img { max-width: 260px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .app-phone img { animation: none; }
+  }
   .app-buttons {
     display: flex;
     justify-content: center;
@@ -1287,6 +1331,49 @@
   </div>
 </section>
 
+<!-- APP -->
+<section class="block container app-section" id="app">
+ <div class="app-layout">
+  <div class="app-content">
+  <div class="section-head">
+    <span class="eyebrow" data-lang="he">אפליקציית Greems</span>
+    <span class="eyebrow" data-lang="en">The Greems app</span>
+    <h2 data-lang="he">טעינה חכמה, בלחיצת כפתור</h2>
+    <h2 data-lang="en">Smart charging, one tap away</h2>
+    <p class="section-sub" data-lang="he">איתור עמדות פנויות בזמן אמת, התחלה והפסקה מהאפליקציה, מעקב הוצאות, וקבלה דיגיטלית — הכל במקום אחד.</p>
+    <p class="section-sub" data-lang="en">Find available stations in real-time, start and stop from your phone, track spending, and get digital receipts — all in one place.</p>
+  </div>
+
+  <div class="app-buttons">
+    <a class="store-btn" href="https://apps.apple.com/il/app/greems/id6474761321" target="_blank" rel="noopener">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.08zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+      <div class="store-btn-text">
+        <small data-lang="he">להורדה ב-</small>
+        <small data-lang="en">Download on the</small>
+        <span>App Store</span>
+      </div>
+    </a>
+    <a class="store-btn" href="https://play.google.com/store/search?q=greems&c=apps&hl=en" target="_blank" rel="noopener">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.787-5.474l-2.6 1.506-2.585 2.585L11.5 12l1.6 1.6 2.585 2.586 2.6 1.506c.532.308.927.84.927 1.508 0 .668-.395 1.2-.927 1.508l-2.6 1.506C13.792 12 17.79 4.793 17.79 4.793zM5.864 2.658l8.928 5.171 10.937-6.333a.996.996 0 00-.61-.92H4.61c-.21 0-.394.064-.546.182z"/></svg>
+      <div class="store-btn-text">
+        <small data-lang="he">קבלו את האפליקציה ב-</small>
+        <small data-lang="en">Get it on</small>
+        <span>Google Play</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="partners">
+    <span data-lang="he"><strong>גם דרך:</strong> פנגו · סלו · גריבו · ACDC · Ecorgy</span>
+    <span data-lang="en"><strong>Also via:</strong> Pango · Cello · Greevo · ACDC · Ecorgy</span>
+  </div>
+  </div>
+  <div class="app-phone">
+    <img src="assets/app-phone.png" alt="Greems app on iPhone showing live station map" loading="lazy" width="340" height="680">
+  </div>
+ </div>
+</section>
+
 <!-- PRICING -->
 <section class="block container">
   <div class="pricing-callout">
@@ -1333,42 +1420,6 @@
       <li data-lang="en"><span><strong>Real-time reports</strong> by driver, vehicle, and location</span></li>
       <li data-lang="en"><span><strong>Priority access</strong> to stations at Adgar 360</span></li>
     </ul>
-  </div>
-</section>
-
-<!-- APP -->
-<section class="block container app-section" id="app">
-  <div class="section-head">
-    <span class="eyebrow" data-lang="he">אפליקציית Greems</span>
-    <span class="eyebrow" data-lang="en">The Greems app</span>
-    <h2 data-lang="he">טעינה חכמה, בלחיצת כפתור</h2>
-    <h2 data-lang="en">Smart charging, one tap away</h2>
-    <p class="section-sub" data-lang="he">איתור עמדות פנויות בזמן אמת, התחלה והפסקה מהאפליקציה, מעקב הוצאות, וקבלה דיגיטלית — הכל במקום אחד.</p>
-    <p class="section-sub" data-lang="en">Find available stations in real-time, start and stop from your phone, track spending, and get digital receipts — all in one place.</p>
-  </div>
-
-  <div class="app-buttons">
-    <a class="store-btn" href="https://apps.apple.com/il/app/greems/id6474761321" target="_blank" rel="noopener">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.08zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-      <div class="store-btn-text">
-        <small data-lang="he">להורדה ב-</small>
-        <small data-lang="en">Download on the</small>
-        <span>App Store</span>
-      </div>
-    </a>
-    <a class="store-btn" href="https://play.google.com/store/search?q=greems&c=apps&hl=en" target="_blank" rel="noopener">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.787-5.474l-2.6 1.506-2.585 2.585L11.5 12l1.6 1.6 2.585 2.586 2.6 1.506c.532.308.927.84.927 1.508 0 .668-.395 1.2-.927 1.508l-2.6 1.506C13.792 12 17.79 4.793 17.79 4.793zM5.864 2.658l8.928 5.171 10.937-6.333a.996.996 0 00-.61-.92H4.61c-.21 0-.394.064-.546.182z"/></svg>
-      <div class="store-btn-text">
-        <small data-lang="he">קבלו את האפליקציה ב-</small>
-        <small data-lang="en">Get it on</small>
-        <span>Google Play</span>
-      </div>
-    </a>
-  </div>
-
-  <div class="partners">
-    <span data-lang="he"><strong>גם דרך:</strong> פנגו · סלו · גריבו · ACDC · Ecorgy</span>
-    <span data-lang="en"><strong>Also via:</strong> Pango · Cello · Greevo · ACDC · Ecorgy</span>
   </div>
 </section>
 
